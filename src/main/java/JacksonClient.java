@@ -14,6 +14,7 @@ import java.util.Map;
  * 另外两种模式：
  * -----------Streaming API：是效率最高的处理方式(开销低、读写速度快，但程序编写复杂度高)
  * -----------Tree Model：是最灵活的处理方式
+ * @author wzm
  */
 public class JacksonClient {
     public static void main(String[] args) throws ParseException, IOException {
@@ -42,6 +43,7 @@ public class JacksonClient {
           writeValueAsBytes(Object arg0)把arg0转成json序列，并把结果输出成字节数组。
           writeValueAsString(Object arg0)把arg0转成json序列，并把结果输出成字符串。
          */
+        //序列化
         ObjectMapper mapper = new ObjectMapper();
         System.out.println("----- java对象转换为JSON-----");
         String json = mapper.writeValueAsString(user);
@@ -55,6 +57,7 @@ public class JacksonClient {
         String jsonList = mapper.writeValueAsString(userList);
         System.out.println(jsonList);
 
+        //反序列化
         System.out.println("\n----- JSON转换为java对象-----");
         User backUser = mapper.readValue(json, User.class);
         System.out.println(backUser);
@@ -72,7 +75,7 @@ public class JacksonClient {
         System.out.println("\n ---JSON转换为map---");
         Map<String, Object> map = mapper.readValue(json, Map.class);
 //        此方式只能遍历value
-      /*  for (Object value : map.values()) {
+/*        for (Object value : map.values()) {
             System.out.println(value);
         }*/
 //        推荐使用此方式遍历map，尤其是容量大时
