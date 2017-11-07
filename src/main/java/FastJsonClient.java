@@ -20,7 +20,8 @@ public class FastJsonClient {
         address.setCountry("中国");
         Address address2 = new Address();
         address2.setCountry("美国");
-        address2.setCity("newYork");
+//        address2.setCity("newYork");
+        address2.setCity(null);
         addressList.add(address);
         addressList.add(address2);
         user.setName("wzm");
@@ -30,7 +31,7 @@ public class FastJsonClient {
         user.setEmail("haha@163.com");
         user.setAddress(addressList);
         //序列化bean->str
-        String bean2jsonStr = JSON.toJSONString(user);
+        String bean2jsonStr = JSON.toJSONString(user,true);
         System.out.println(bean2jsonStr);
 
         //反序列化str->bean
@@ -49,5 +50,7 @@ public class FastJsonClient {
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
+
+        System.out.println(map);
     }
 }
